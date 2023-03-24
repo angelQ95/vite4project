@@ -7,7 +7,8 @@ import { useSettingStore } from '@/store';
 
 const store = useSettingStore();
 const mode = computed(() => {
-  return store.displayMode;
+  // return store.displayMode;
+  return 'dark';
 });
 </script>
 <style scoped>
