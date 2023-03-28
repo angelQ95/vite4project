@@ -3,6 +3,7 @@ import { store } from './store';
 import './style.css'
 import App from './App.vue'
 import router from './router';
+import './permission';
 
 const app = createApp(App)
 
