@@ -11,21 +11,22 @@ const fixedModules = import.meta.globEager('./modules/**/!(homepage).ts');
 
 // 其他固定路由
 const defaultRouterList: Array<RouteRecordRaw> = [
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/pages/login/index.vue'),
-  },
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component: () => import('@/pages/login/index.vue'),
+  // },ç
   {
     path: '/',
-    redirect: '/dashboard/base',
+    name: '/',
+    component: () => import('@/pages/home.vue'),
   },
 ];
 // 存放固定路由
 export const homepageRouterList: Array<RouteRecordRaw> = mapModuleRouterList(homepageModules);
 export const fixedRouterList: Array<RouteRecordRaw> = mapModuleRouterList(fixedModules);
 
-export const allRoutes = [...homepageRouterList, ...fixedRouterList, ...defaultRouterList];
+export const allRoutes = [...defaultRouterList];
 
 // 固定路由模块转换为路由
 export function mapModuleRouterList(modules: Record<string, unknown>): Array<RouteRecordRaw> {
@@ -40,7 +41,7 @@ export function mapModuleRouterList(modules: Record<string, unknown>): Array<Rou
 }
 
 export const getRoutesExpanded = () => {
-  const expandedRoutes = [];
+  const expandedRoutes:any = [];
 
   fixedRouterList.forEach((item) => {
     if (item.meta && item.meta.expanded) {
@@ -72,7 +73,7 @@ export const getActive = (maxLevel = 3): string => {
 
 const router = createRouter({
   history: createWebHistory(env === 'site' ? '/starter/vue-next/' : import.meta.env.VITE_BASE_URL),
-  routes: allRoutes,
+  routes: defaultRouterList,
   scrollBehavior() {
     return {
       el: '#app',

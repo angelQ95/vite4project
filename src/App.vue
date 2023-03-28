@@ -1,15 +1,16 @@
 <template>
-  <router-view :class="[mode]" />
+  dsadsad
+  <router-view />
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useSettingStore } from '@/store';
+// import { useSettingStore } from '@/store';
 
-const store = useSettingStore();
-const mode = computed(() => {
-  // return store.displayMode;
-  return 'dark';
-});
+// const store = useSettingStore();
+// const mode = computed(() => {
+//   // return store.displayMode;
+//   return 'dark';
+// });
 </script>
 <style scoped>
 .logo {
