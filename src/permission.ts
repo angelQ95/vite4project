@@ -1,11 +1,16 @@
-// import { useLoadingBar } from 'naive-ui';
-// import { getPermissionStore, getUserStore } from '@/store';
 import router from '@/router';
+import { createDiscreteApi } from 'naive-ui';
 
-// const loadingBar = useLoadingBar();
+/**
+ * 挂载 Naive-ui 脱离上下文的 API
+ * 如果你想在 setup 外使用 useDialog、useMessage、useNotification、useLoadingBar，可以通过 createDiscreteApi 来构建对应的 API。
+ * https://www.naiveui.com/zh-CN/dark/components/discrete
+ */
+
+const {loadingBar} = createDiscreteApi(['loadingBar']);
 
 router.beforeEach(async (to, from, next) => {
-  // loadingBar.start()
+  loadingBar?.start()
   next();
   // const permissionStore = getPermissionStore();
   // const { whiteListRouters } = permissionStore;
@@ -80,5 +85,5 @@ router.afterEach((to) => {
   //   userStore.logout();
   //   permissionStore.restoreRoutes();
   // }
-  // loadingBar.finish()
+  loadingBar?.finish()
 });
