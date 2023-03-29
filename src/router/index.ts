@@ -18,7 +18,7 @@ const defaultRouterList: Array<RouteRecordRaw> = [
   // },ç
   {
     path: '/',
-    name: '/',
+    name: '/home',
     component: () => import('@/pages/home.vue'),
   },
 ];
