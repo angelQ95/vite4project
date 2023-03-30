@@ -18,8 +18,8 @@ const defaultRouterList: Array<RouteRecordRaw> = [
   // },ç
   {
     path: '/',
-    name: '/home',
-    component: () => import('@/pages/home.vue'),
+    name: '/',
+    component: () => import('@/pages/Main.vue'),
   },
 ];
 // 存放固定路由
@@ -84,3 +84,4 @@ const router = createRouter({
 });
 
 export default router;
+
