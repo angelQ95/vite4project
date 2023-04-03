@@ -6,5 +6,6 @@ import { NLoadingBarProvider } from 'naive-ui'
     <router-view />
   </n-loading-bar-provider>
 </template>
-<style scoped>
+<style lang="less">
+  @import 'styles/index.less';
 </style>
