@@ -4,11 +4,23 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": false,
     "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
+    "allowJs": true,
+    "sourceMap": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "types": [
+      "vite/client"
+    ],
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types"
+    ],
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
