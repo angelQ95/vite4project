@@ -1,91 +1,114 @@
 import { defineStore } from 'pinia';
-import { TOKEN_NAME } from '@/config/global';
-import { store, usePermissionStore } from '@/store';
+import { store } from '@/store';
+import { ACCESS_TOKEN, CURRENT_USER, IS_LOCKSCREEN } from '@/store/mutation-types';
+import { ResultEnum } from '@/enums/httpEnum';
 
-const InitUserInfo = {
-  roles: [], // 前端权限模型使用 如果使用请配置modules/permission-fe.ts使用
-};
+import { getUserInfo, login } from '@/api/system/user';
+import { storage } from '@/utils/Storage';
 
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    token: localStorage.getItem(TOKEN_NAME) || 'main_token', // 默认token不走权限
-    userInfo: { ...InitUserInfo },
+export interface IUserState {
+  token: string;
+  username: string;
+  welcome: string;
+  avatar: string;
+  permissions: any[];
+  info: any;
+}
+
+export const useUserStore = defineStore({
+  id: 'app-user',
+  state: (): IUserState => ({
+    token: storage.get(ACCESS_TOKEN, ''),
+    username: '',
+    welcome: '',
+    avatar: '',
+    permissions: [],
+    info: storage.get(CURRENT_USER, {}),
   }),
   getters: {
-    roles: (state) => {
-      return state.userInfo?.roles;
+    getToken(): string {
+      return this.token;
+    },
+    getAvatar(): string {
+      return this.avatar;
+    },
+    getNickname(): string {
+      return this.username;
+    },
+    getPermissions(): [any][] {
+      return this.permissions;
+    },
+    getUserInfo(): object {
+      return this.info;
     },
   },
   actions: {
-    async login(userInfo: Record<string, unknown>) {
-      const mockLogin = async (userInfo: Record<string, unknown>) => {
-        // 登录请求流程
-        console.log(`用户信息:`, userInfo);
-        // const { account, password } = userInfo;
-        // if (account !== 'td') {
-        //   return {
-        //     code: 401,
-        //     message: '账号不存在',
-        //   };
-        // }
-        // if (['main_', 'dev_'].indexOf(password) === -1) {
-        //   return {
-        //     code: 401,
-        //     message: '密码错误',
-        //   };
-        // }
-        // const token = {
-        //   main_: 'main_token',
-        //   dev_: 'dev_token',
-        // }[password];
-        return {
-          code: 200,
-          message: '登陆成功',
-          data: 'main_token',
-        };
-      };
-
-      const res = await mockLogin(userInfo);
-      if (res.code === 200) {
-        this.token = res.data;
-      } else {
-        throw res;
+    setToken(token: string) {
+      this.token = token;
+    },
+    setAvatar(avatar: string) {
+      this.avatar = avatar;
+    },
+    setPermissions(permissions: any[]) {
+      this.permissions = permissions;
+    },
+    setUserInfo(info: string) {
+      this.info = info;
+    },
+    // 登录
+    async login(userInfo: { username: any; password: string; isLock: boolean; }) {
+      try {
+        const response = await login(userInfo);
+        const { result, code } = response;
+        if (code === ResultEnum.SUCCESS) {
+          const ex = 7 * 24 * 60 * 60;
+          storage.set(ACCESS_TOKEN, result.token, ex);
+          storage.set(CURRENT_USER, result, ex);
+          storage.set(IS_LOCKSCREEN, false);
+          this.setToken(result.token);
+          this.setUserInfo(result);
+        }
+        return Promise.resolve(response);
+      } catch (e) {
+        return Promise.reject(e);
       }
     },
-    async getUserInfo() {
-      const mockRemoteUserInfo = async (token: string) => {
-        if (token === 'main_token') {
-          return {
-            name: 'td_main',
-            roles: ['all'], // 前端权限模型使用 如果使用请配置modules/permission-fe.ts使用
-          };
-        }
-        return {
-          name: 'td_dev',
-          roles: ['UserIndex', 'DashboardBase', 'login'], // 前端权限模型使用 如果使用请配置modules/permission-fe.ts使用
-        };
-      };
-      const res = await mockRemoteUserInfo(this.token);
 
-      this.userInfo = res;
+    // 获取用户信息
+    GetInfo() {
+      const that = this;
+      return new Promise((resolve, reject) => {
+        getUserInfo()
+          .then((res: any) => {
+            const result = res;
+            if (result.permissions && result.permissions.length) {
+              const permissionsList = result.permissions;
+              that.setPermissions(permissionsList);
+              that.setUserInfo(result);
+            } else {
+              reject(new Error('getInfo: permissionsList must be a non-null array !'));
+            }
+            that.setAvatar(result.avatar);
+            resolve(res);
+          })
+          .catch((error:any) => {
+            reject(error);
+          });
+      });
     },
+
+    // 登出
     async logout() {
-      localStorage.removeItem(TOKEN_NAME);
-      this.token = '';
-      this.userInfo = { ...InitUserInfo };
-    },
-    async removeToken() {
-      this.token = '';
-    },
-  },
-  persist: {
-    afterRestore: () => {
-      const permissionStore = usePermissionStore();
-      permissionStore.initRoutes();
+      this.setPermissions([]);
+      this.setUserInfo('');
+      storage.remove(ACCESS_TOKEN);
+      storage.remove(CURRENT_USER);
+      return Promise.resolve('');
     },
   },
 });
 
-export function getUserStore() {
+// Need to be used outside the setup
+export function useUserStoreWidthOut() {
   return useUserStore(store);
 }

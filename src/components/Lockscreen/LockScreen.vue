@@ -66,7 +66,7 @@ import { ResultEnum } from '@/enums/httpEnum';
 import recharge from './Recharge.vue';
 import {
     LockOutlined,
-    LoadingOutlined,
+    LoadingOutlined, 
     UserOutlined,
     ApiOutlined,
     ArrowRightOutlined,
