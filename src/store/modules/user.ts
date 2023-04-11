@@ -1,8 +1,7 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'; 
 import { store } from '@/store';
 import { ACCESS_TOKEN, CURRENT_USER, IS_LOCKSCREEN } from '@/store/mutation-types';
 import { ResultEnum } from '@/enums/httpEnum';
-
 import { getUserInfo, login } from '@/api/system/user';
 import { storage } from '@/utils/Storage';
 

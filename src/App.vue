@@ -1,10 +1,9 @@
 <template>
-  <NConfigProvider :locale="zhCN" :theme="getDarkTheme" :theme-overrides="getThemeOverrides"
-    :date-locale="dateZhCN">
+  <NConfigProvid>
     <AppProvider>
       <RouterView />
     </AppProvider>
-  </NConfigProvider>
+  </NConfigProvid>
 </template>
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue';

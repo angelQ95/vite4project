@@ -1,87 +1,61 @@
-import { useRoute, createRouter, RouteRecordRaw, createWebHistory } from 'vue-router';
-import uniq from 'lodash/uniq';
+import { App } from 'vue';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { RedirectRoute } from '@/router/base';
+import { PageEnum } from '@/enums/pageEnum';
+import { createRouterGuards } from './router-guards';
+import type { IModuleType } from './types';
 
-const env = import.meta.env.MODE || 'development';
+const modules = import.meta.glob<IModuleType>('./modules/**/*.ts', { eager: true });
 
-// 导入homepage相关固定路由
-const homepageModules = import.meta.globEager('./modules/**/homepage.ts');
+const routeModuleList: RouteRecordRaw[] = [];
 
-// 导入modules非homepage相关固定路由
-const fixedModules = import.meta.globEager('./modules/**/!(homepage).ts');
-
-// 其他固定路由
-const defaultRouterList: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/login',
-  //   name: 'login',
-  //   component: () => import('@/pages/login/index.vue'),
-  // },ç
-  {
-    path: '/',
-    name: '/',
-    component: () => import('@/pages/Main.vue'),
-  },
-];
-// 存放固定路由
-export const homepageRouterList: Array<RouteRecordRaw> = mapModuleRouterList(homepageModules);
-export const fixedRouterList: Array<RouteRecordRaw> = mapModuleRouterList(fixedModules);
-
-export const allRoutes = [...defaultRouterList];
-
-// 固定路由模块转换为路由
-export function mapModuleRouterList(modules: Record<string, unknown>): Array<RouteRecordRaw> {
-  const routerList: Array<RouteRecordRaw> = [];
-  Object.keys(modules).forEach((key) => {
-    // @ts-ignore
-    const mod = modules[key].default || {};
-    const modList = Array.isArray(mod) ? [...mod] : [mod];
-    routerList.push(...modList);
-  });
-  return routerList;
-}
-
-export const getRoutesExpanded = () => {
-  const expandedRoutes:any = [];
-
-  fixedRouterList.forEach((item) => {
-    if (item.meta && item.meta.expanded) {
-      expandedRoutes.push(item.path);
-    }
-    if (item.children && item.children.length > 0) {
-      item.children
-        .filter((child) => child.meta && child.meta.expanded)
-        .forEach((child: RouteRecordRaw) => {
-          expandedRoutes.push(item.path);
-          expandedRoutes.push(`${item.path}/${child.path}`);
-        });
-    }
-  });
-  return uniq(expandedRoutes);
-};
-
-export const getActive = (maxLevel = 3): string => {
-  const route = useRoute();
-  if (!route.path) {
-    return '';
-  }
-  return route.path
-    .split('/')
-    .filter((_item: string, index: number) => index <= maxLevel && index > 0)
-    .map((item: string) => `/${item}`)
-    .join('');
-};
-
-const router = createRouter({
-  history: createWebHistory(env === 'site' ? '/starter/vue-next/' : import.meta.env.VITE_BASE_URL),
-  routes: defaultRouterList,
-  scrollBehavior() {
-    return {
-      el: '#app',
-      top: 0,
-      behavior: 'smooth',
-    };
-  },
+Object.keys(modules).forEach((key) => {
+  const mod = modules[key].default || {};
+  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  routeModuleList.push(...modList);
 });
 
-export default router;
+function sortRoute(a, b) {
+  return (a.meta?.sort || 0) - (b.meta?.sort || 0);
+}
 
+routeModuleList.sort(sortRoute);
+
+export const RootRoute: RouteRecordRaw = {
+  path: '/',
+  name: 'Root',
+  redirect: PageEnum.BASE_HOME,
+  meta: {
+    title: 'Root',
+  },
+};
+
+export const LoginRoute: RouteRecordRaw = {
+  path: '/login',
+  name: 'Login',
+  component: () => import('@/views/login/index.vue'),
+  meta: {
+    title: '登录',
+  },
+};
+
+//需要验证权限
+export const asyncRoutes = [...routeModuleList];
+
+//普通路由 无需验证权限
+export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
+
+const router = createRouter({
+  history: createWebHashHistory(''),
+  routes: constantRouter,
+  strict: true,
+  scrollBehavior: () => ({ left: 0, top: 0 }),
+});
+
+export function setupRouter(app: App) {
+  app.use(router);
+  // 创建路由守卫
+  createRouterGuards(router);
+}
+
+export default router;

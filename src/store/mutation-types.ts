@@ -1,3 +1,6 @@
+/**
+ * @description: 可变类型
+ */
 export const ACCESS_TOKEN = 'ACCESS-TOKEN'; // 用户token
 export const CURRENT_USER = 'CURRENT-USER'; // 当前用户信息
 export const IS_LOCKSCREEN = 'IS-LOCKSCREEN'; // 是否锁屏
