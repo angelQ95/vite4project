@@ -1,5 +1,6 @@
 <template>
     <n-config-provider style="height: 100%">
+        dsa
         <n-global-style />
     </n-config-provider>
 </template>

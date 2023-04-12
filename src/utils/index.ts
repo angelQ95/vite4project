@@ -6,6 +6,9 @@ import { isObject } from './is/index';
 import { cloneDeep } from 'lodash-es';
 /**
  * render 图标
+ * { default: () => h(icon) }: 表示虚拟 DOM 元素的子元素。
+ * 在这里，该虚拟 DOM 元素只有一个子元素，且其属性为 default，
+ * 值为一个函数。这个函数会在渲染时被调用，返回一个包含 icon 的虚拟 DOM 元素。
  * */
 export function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });

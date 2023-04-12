@@ -6,7 +6,7 @@ export enum PageEnum {
   REDIRECT = '/redirect',
   REDIRECT_NAME = 'Redirect',
   // 首页
-  BASE_HOME = '/dashboard',
+  BASE_HOME = '/dashboard/base',
   //首页跳转默认路由
   BASE_HOME_REDIRECT = '/dashboard/base',
   // 错误

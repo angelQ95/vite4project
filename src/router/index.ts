@@ -24,7 +24,8 @@ routeModuleList.sort(sortRoute);
 export const RootRoute: RouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: PageEnum.BASE_HOME,
+  // redirect: PageEnum.BASE_HOME,
+  component: () => import('@/pages/Main.vue'),
   meta: {
     title: 'Root',
   },
