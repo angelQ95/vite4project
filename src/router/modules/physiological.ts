@@ -16,9 +16,9 @@ import { renderIcon } from '@/utils/index';
  * */
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/exception',
-    name: 'Exception',
-    redirect: '/exception/403',
+    path: '/physiological',
+    name: 'physiological',
+    redirect: '/physiological/403',
     component: Layout,
     meta: {
       title: '异常页面',
@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '403',
         },
-        component: () => import('@/views/exception/403.vue'),
+        component: () => import('@/pages/physiological/403.vue'),
       },
       {
         path: '404',
@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '404',
         },
-        component: () => import('@/views/exception/404.vue'),
+        component: () => import('@/pages/physiological/404.vue'),
       },
       {
         path: '500',
@@ -48,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '500',
         },
-        component: () => import('@/views/exception/500.vue'),
+        component: () => import('@/pages/physiological/500.vue'),
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { TableOutlined } from '@vicons/antd';
+import { ExclamationCircleOutlined } from '@vicons/antd';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -16,33 +16,39 @@ import { renderIcon } from '@/utils/index';
  * */
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/list',
-    name: 'List',
-    redirect: '/list/basic-list',
+    path: '/psychological',
+    name: 'psychological',
+    redirect: '/psychological/403',
     component: Layout,
     meta: {
-      title: '列表页面',
-      icon: renderIcon(TableOutlined),
-      sort: 2,
+      title: '异常页面',
+      icon: renderIcon(ExclamationCircleOutlined),
+      sort: 3,
     },
     children: [
       {
-        path: 'basic-list',
-        name: 'basic-list',
+        path: '403',
+        name: 'exception-403',
         meta: {
-          title: '基础列表',
+          title: '403',
         },
-        component: () => import('@/views/list/basicList/index.vue'),
+        component: () => import('@/pages/psychological/403.vue'),
       },
       {
-        path: 'basic-info/:id?',
-        name: 'basic-info',
+        path: '404',
+        name: 'exception-404',
         meta: {
-          title: '基础详情',
-          hidden: true,
-          activeMenu: 'basic-list',
+          title: '404',
         },
-        component: () => import('@/views/list/basicList/info.vue'),
+        component: () => import('@/pages/psychological/404.vue'),
+      },
+      {
+        path: '500',
+        name: 'exception-500',
+        meta: {
+          title: '500',
+        },
+        component: () => import('@/pages/psychological/500.vue'),
       },
     ],
   },

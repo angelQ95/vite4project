@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { OptionsSharp } from '@vicons/ionicons5';
+import { ExclamationCircleOutlined } from '@vicons/antd';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -16,31 +16,39 @@ import { renderIcon } from '@/utils/index';
  * */
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/system',
-    name: 'System',
-    redirect: '/system/menu',
+    path: '/cognitive',
+    name: 'cognitive',
+    redirect: '/cognitive/403',
     component: Layout,
     meta: {
-      title: '系统设置',
-      icon: renderIcon(OptionsSharp),
-      sort: 1,
+      title: '异常页面',
+      icon: renderIcon(ExclamationCircleOutlined),
+      sort: 3,
     },
     children: [
       {
-        path: 'menu',
-        name: 'system_menu',
+        path: '403',
+        name: 'exception-403',
         meta: {
-          title: '菜单权限管理',
+          title: '403',
         },
-        component: () => import('@/views/system/menu/menu.vue'),
+        component: () => import('@/pages/cognitive/403.vue'),
       },
       {
-        path: 'role',
-        name: 'system_role',
+        path: '404',
+        name: 'exception-404',
         meta: {
-          title: '角色权限管理',
+          title: '404',
         },
-        component: () => import('@/views/system/role/role.vue'),
+        component: () => import('@/pages/cognitive/404.vue'),
+      },
+      {
+        path: '500',
+        name: 'exception-500',
+        meta: {
+          title: '500',
+        },
+        component: () => import('@/pages/cognitive/500.vue'),
       },
     ],
   },
