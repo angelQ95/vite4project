@@ -34,13 +34,22 @@
     }
   },
   "include": [
-    "**/*.ts",
-    "src/**/*.d.ts",
-    "src/types/**/*.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx", 
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
-    "node_modules/tdesign-vue-next/global.d.ts"
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "mock/**/*.ts",
+    "components.d.ts",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.js"
   ],
   "compileOnSave": false,
   "references": [{ "path": "./tsconfig.node.json" }]

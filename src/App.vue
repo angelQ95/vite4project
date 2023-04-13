@@ -7,6 +7,7 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue';
+import { AppProvider } from '@/components/Application';
 import {zhCN, dateZhCN, darkTheme, NLoadingBarProvider } from 'naive-ui'
 
 </script>

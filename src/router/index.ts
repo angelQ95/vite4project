@@ -30,8 +30,8 @@ routeModuleList.sort(sortRoute);
 export const RootRoute: RouteRecordRaw = {
   path: '/',
   name: 'Root',
-  // redirect: PageEnum.BASE_HOME,
-  component: () => import('@/pages/Main.vue'),
+  redirect: PageEnum.BASE_HOME,
+  // component: () => import('@/pages/Main.vue'),
   meta: {
     title: 'Root',
   },
@@ -40,7 +40,7 @@ export const RootRoute: RouteRecordRaw = {
 export const LoginRoute: RouteRecordRaw = {
   path: '/login',
   name: 'Login',
-  component: () => import('@/views/login/index.vue'),
+  component: () => import('@/pages/login/index.vue'),
   meta: {
     title: '登录',
   },
