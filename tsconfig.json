@@ -43,6 +43,7 @@
     "build/**/*.ts",
     "build/**/*.d.ts",
     "mock/**/*.ts",
+    "mock/*.ts",
     "components.d.ts",
     "vite.config.ts"
   ],
