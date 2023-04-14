@@ -109,6 +109,12 @@
   } from '@vicons/antd';
   import { renderIcon } from '@/utils';
   import elementResizeDetectorMaker from 'element-resize-detector';
+  /**
+   * element-resize-detector 是一个 JavaScript 库，
+   * 用于检测 HTML 元素的大小调整事件。
+   * 它可以帮助您在元素大小发生变化时触发自定义回调函数，
+   * 以便您能够及时处理元素大小的变化。
+   */
   import { useDesignSetting } from '@/hooks/setting/useDesignSetting';
   import { useProjectSettingStore } from '@/store/modules/projectSetting';
   import { useThemeVars } from 'naive-ui';

@@ -24,6 +24,15 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         localEnabled: command === 'serve',
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: {},
+          javascriptEnabled: true,
+          additionalData: `@import "src/styles/var.less";`,
+        },
+      },
+    },
     resolve: {
       // 配置路径别名
       alias,
