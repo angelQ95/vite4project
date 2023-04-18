@@ -21,30 +21,30 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/psychological/403',
     component: Layout,
     meta: {
-      title: '异常页面',
+      title: 'psychological',
       icon: renderIcon(ExclamationCircleOutlined),
       sort: 3,
     },
     children: [
       {
-        path: '403',
-        name: 'exception-403',
+        path: 'psychological-403',
+        name: 'psychological-403',
         meta: {
           title: '403',
         },
         component: () => import('@/pages/psychological/403.vue'),
       },
       {
-        path: '404',
-        name: 'exception-404',
+        path: 'psychological-404',
+        name: 'psychological-404',
         meta: {
           title: '404',
         },
         component: () => import('@/pages/psychological/404.vue'),
       },
       {
-        path: '500',
-        name: 'exception-500',
+        path: 'psychological-500',
+        name: 'psychological-500',
         meta: {
           title: '500',
         },

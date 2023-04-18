@@ -21,30 +21,30 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/cognitive/403',
     component: Layout,
     meta: {
-      title: '异常页面',
+      title: 'cognitive',
       icon: renderIcon(ExclamationCircleOutlined),
       sort: 3,
     },
     children: [
       {
-        path: '403',
-        name: 'exception-403',
+        path: 'cognitive-403',
+        name: 'cognitive-403',
         meta: {
           title: '403',
         },
         component: () => import('@/pages/cognitive/403.vue'),
       },
       {
-        path: '404',
-        name: 'exception-404',
+        path: 'cognitive-404',
+        name: 'cognitive-404',
         meta: {
           title: '404',
         },
         component: () => import('@/pages/cognitive/404.vue'),
       },
       {
-        path: '500',
-        name: 'exception-500',
+        path: 'cognitive-500',
+        name: 'cognitive-500',
         meta: {
           title: '500',
         },

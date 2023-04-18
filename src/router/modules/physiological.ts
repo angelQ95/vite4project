@@ -21,30 +21,30 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/physiological/403',
     component: Layout,
     meta: {
-      title: '异常页面',
+      title: 'physiological',
       icon: renderIcon(ExclamationCircleOutlined),
       sort: 3,
     },
     children: [
       {
-        path: '403',
-        name: 'exception-403',
+        path: 'physiological-403',
+        name: 'physiological-403',
         meta: {
           title: '403',
         },
         component: () => import('@/pages/physiological/403.vue'),
       },
       {
-        path: '404',
-        name: 'exception-404',
+        path: 'physiological-404',
+        name: 'physiological-404',
         meta: {
           title: '404',
         },
         component: () => import('@/pages/physiological/404.vue'),
       },
       {
-        path: '500',
-        name: 'exception-500',
+        path: 'physiological-500',
+        name: 'physiological-500',
         meta: {
           title: '500',
         },
