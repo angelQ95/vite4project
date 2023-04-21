@@ -196,7 +196,7 @@
 
       const router = useRouter();
       const route = useRoute();
-
+      
       const generator: any = (routerMap) => {
         return routerMap.map((item) => {
           const currentMenu = {
@@ -215,6 +215,7 @@
       };
 
       const breadcrumbList = computed(() => {
+        console.log(route)
         return generator(route.matched);
       });
 
