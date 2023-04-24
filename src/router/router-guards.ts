@@ -16,7 +16,7 @@ import { ErrorPageRoute } from '@/router/base';
 
 const LOGIN_PATH = PageEnum.BASE_LOGIN;
 
-const whitePathList = [LOGIN_PATH]; // no redirect whitelist
+const whitePathList = [LOGIN_PATH]; // no redirect whitelist 跳转白名单，需要添加/修改
 //创建路由守卫
 export function createRouterGuards(router: Router) {
   const userStore = useUserStoreWidthOut();
