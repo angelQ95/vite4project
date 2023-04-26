@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/cognitive',
     name: 'cognitive',
-    redirect: '/cognitive/403',
+    redirect: '/cognitive/cognitive-403',
     component: Layout,
     meta: {
       title: 'cognitive',

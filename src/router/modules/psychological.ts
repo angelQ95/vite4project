@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/psychological',
     name: 'psychological',
-    redirect: '/psychological/403',
+    redirect: '/psychological/psychological-403',
     component: Layout,
     meta: {
       title: 'psychological',
