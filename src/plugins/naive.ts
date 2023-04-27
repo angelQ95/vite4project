@@ -68,6 +68,7 @@ const naive = NaiveUI.create({
     NaiveUI.NTimePicker,
     NaiveUI.NBackTop,
     NaiveUI.NSkeleton,
+    NaiveUI.NGi,
   ],
 });
 

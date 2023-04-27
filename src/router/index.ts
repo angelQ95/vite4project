@@ -46,8 +46,17 @@ export const LoginRoute: RouteRecordRaw = {
   },
 };
 
+export const MenuRoute: RouteRecordRaw = {
+  path: '/menu',
+  name: 'Menu',
+  component: () => import('@/pages/menu/index.vue'),
+  meta: {
+    title: '菜单',
+  },
+};
+
 //需要验证权限
-export const asyncRoutes = [...routeModuleList];
+export const asyncRoutes = [...routeModuleList,MenuRoute];
 
 //普通路由 无需验证权限
 export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];

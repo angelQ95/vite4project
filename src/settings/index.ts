@@ -7,7 +7,7 @@ import {
   ThemeMode,
 } from '@/store/types'
 
-export const projectName = 'Admin Work'
+export const projectName = 'AngelQ write'
 
 export default {
   theme: ThemeMode.LIGHT,
