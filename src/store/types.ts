@@ -103,3 +103,9 @@ export interface SplitTab {
   children?: Array<RouteRecordRaw>
   checked: Ref<UnwrapRef<boolean>>
 }
+//用户登录后菜单栏
+export interface UserMenu {
+  name: string;
+  color: string;
+  path: string;
+}

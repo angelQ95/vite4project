@@ -1,41 +1,22 @@
 <template>
     <div class="tpl">
         <h1 class="marg">xxxxxxxx系统</h1>
-        <n-grid x-gap="12" :cols="colsProps">
+        <n-grid x-gap="12" :cols="giList.length">
             <n-gi v-for="item in giList">
                 <router-link :to="item.path">
                     <div :class="item.color">{{ item.name }}</div>
                 </router-link>
-            </n-gi>
-            <n-gi>
-                <div class="green" />
-            </n-gi>
-            <n-gi>
-                <div class="light-green" />
-            </n-gi>
-            <n-gi>
-                <div class="green" />
             </n-gi>
         </n-grid>
     </div>
 </template>
 
 <script setup lang="ts">
-interface giContent {
-    name: string,
-    color: string,
-    path: string
-}
-const props = defineProps({
-    colsProps: {//菜单数量
-        type: Number,
-        default: 4,
-    },
-    giList: {//gilist详细内容
-        type: Array<giContent>,
-        default: [],
-    },
-})
+import { useUserMenuStore } from '@/store/modules/menu';
+
+const UserMenu = useUserMenuStore();
+const giList = UserMenu.getMenu;
+
 </script>
 
 <style scoped>

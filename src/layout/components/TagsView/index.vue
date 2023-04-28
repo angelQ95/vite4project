@@ -29,7 +29,7 @@
             <RightOutlined />
           </n-icon>
         </span>
-        <div ref="navScroll" class="tabs-card-scroll">
+        <div ref="navScroll" class="tabs-card-scroll" v-if="foldMenu">
           <Draggable :list="tabsList" animation="300" item-key="fullPath" class="flex">
             <template #item="{ element }">
               <div
@@ -175,6 +175,10 @@
         const { fullPath, hash, meta, name, params, path, query } = route;
         return { fullPath, hash, meta, name, params, path, query };
       };
+
+      const foldMenu = computed(()=>{
+        return route.name!=='use-menu'
+      })
 
       const isMixMenuNoneSub = computed(() => {
         const mixMenu = settingStore.menuSetting.mixMenu;
@@ -527,6 +531,7 @@
         getAppTheme,
         getCardColor,
         getBaseColor,
+        foldMenu
       };
     },
   });

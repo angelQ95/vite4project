@@ -2,7 +2,7 @@
   <n-layout class="layout" :position="fixedMenu" has-sider>
     <n-layout-sider
       v-if="
-        !isMobile && isMixMenuNoneSub && (navMode === 'vertical' || navMode === 'horizontal-mix')
+        !isMobile && isMixMenuNoneSub && (navMode === 'vertical' || navMode === 'horizontal-mix') && $route.name!=='use-menu'
       "
       show-trigger="bar"
       @collapse="collapsed = true"

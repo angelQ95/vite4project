@@ -4,7 +4,7 @@ import { RedirectRoute } from '@/router/base';
 import { PageEnum } from '@/enums/pageEnum';
 import { createRouterGuards } from './router-guards';
 import type { IModuleType } from './types';
-
+import { Layout } from '@/router/constant';
 /**
  * 这段代码使用了 ES2020 中的动态导入语法 import.meta.glob()，它会根据指定的模式匹配符('./modules/...')，
  * 在指定目录('./modules')下查找所有的 .ts 文件，返回一个对象。
@@ -49,17 +49,25 @@ export const LoginRoute: RouteRecordRaw = {
 export const MenuRoute: RouteRecordRaw = {
   path: '/menu',
   name: 'Menu',
-  component: () => import('@/pages/menu/index.vue'),
-  meta: {
-    title: '菜单',
-  },
+  redirect: '/menu/use-menu',
+  component: Layout,
+  children: [
+    {
+      path: 'use-menu',
+      name: 'use-menu',
+      meta: {
+        title: '菜单',
+      },
+      component: () => import('@/pages/menu/index.vue'),
+    },
+  ],
 };
 
 //需要验证权限
-export const asyncRoutes = [...routeModuleList,MenuRoute];
+export const asyncRoutes = [...routeModuleList];
 
 //普通路由 无需验证权限
-export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
+export const constantRouter: any[] = [MenuRoute, LoginRoute, RootRoute, RedirectRoute];
 
 const router = createRouter({
   history: createWebHashHistory(''),

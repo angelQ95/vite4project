@@ -20,6 +20,7 @@
     <div class="layout-header-left" v-else>
       <!-- 菜单收起 -->
       <div
+      v-if="$route.name!=='use-menu'"
         class="ml-1 layout-header-trigger layout-header-trigger-min"
         @click="() => $emit('update:collapsed', !collapsed)"
       >

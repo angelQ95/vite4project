@@ -78,6 +78,7 @@
 import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/store/modules/user';
+import { useUserMenuStore } from '@/store/modules/menu';
 import { useMessage } from 'naive-ui';
 import { ResultEnum } from '@/enums/httpEnum';
 import { PersonOutline, LockClosedOutline, LogoGithub, LogoFacebook } from '@vicons/ionicons5';
@@ -106,7 +107,7 @@ const rules = {
 };
 
 const userStore = useUserStore();
-
+const UserMenuStore = useUserMenuStore();
 const router = useRouter();
 const route = useRoute();
 
@@ -130,7 +131,23 @@ const handleSubmit = (e) => {
                     const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
                     message.success('登录成功，即将进入系统');
                     if (route.name === LOGIN_NAME) {
+                        UserMenuStore.setMenu([{
+                            name: '1',
+                            color: 'light-green',
+                            path: '/cognitive/cognitive-403'
+                        }, {
+                            name: '2',
+                            color: 'green',
+                            path: '/psychological/psychological-403'
+                        }, {
+                            name: '3',
+                            color: 'light-green',
+                            path: '/physiological/physiological-403'
+                        }])
                         router.replace('/');
+                        //接口返回对应类型权限的菜单数据，设置菜单数据。
+
+                        //路由传参
                     } else router.replace(toPath);
                 } else {
                     message.info(msg || '登录失败');
