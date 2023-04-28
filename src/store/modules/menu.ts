@@ -7,6 +7,8 @@ interface Menu {
   menu: UserMenu[];
 }
 export const useUserMenuStore = defineStore('menu', {
+  //开启数据持久化
+  persist: true,
   state: (): Menu => ({ menu: [] }),
   getters: {
     getMenu(): UserMenu[] {
