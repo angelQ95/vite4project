@@ -46,7 +46,7 @@
             'fluid-header': fixedHeader === 'static',
           }"
         >
-          <TabsView v-if="isMultiTabs" v-model:collapsed="collapsed" />
+          <!-- <TabsView v-if="isMultiTabs" v-model:collapsed="collapsed" /> -->
           <div
             class="main-view"
             :class="{
@@ -71,7 +71,7 @@
 <script lang="ts" setup>
   import { ref, unref, computed, onMounted } from 'vue';
   import { Logo } from './components/Logo';
-  import { TabsView } from './components/TagsView';
+  // import { TabsView } from './components/TagsView';
   import { MainView } from './components/Main';
   import { AsideMenu } from './components/Menu';
   import { PageHeader } from './components/Header';
@@ -264,7 +264,7 @@
   }
 
   .main-view-fix {
-    padding-top: 44px;
+    // padding-top: 44px;
   }
 
   .noMultiTabs {

@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/psychological',
     name: 'psychological',
-    redirect: '/psychological/psychological-403',
+    redirect: '/psychological/cuedTaskSwitching',
     component: Layout,
     meta: {
       title: 'psychological',
@@ -27,12 +27,12 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: 'psychological-403',
-        name: 'psychological-403',
+        path: 'cuedTaskSwitching',
+        name: 'cuedTaskSwitching',
         meta: {
-          title: '403',
+          title: 'cuedTaskSwitching',
         },
-        component: () => import('@/pages/psychological/403.vue'),
+        component: () => import('@/pages/psychological/cuedTaskSwitching.vue'),
       },
       {
         path: 'psychological-404',
