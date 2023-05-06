@@ -26,4 +26,12 @@ new Map({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+#map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+</style>
