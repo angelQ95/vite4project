@@ -37,6 +37,9 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       // 配置路径别名
       alias,
     },
+    build: {
+      sourcemap: true,//Vite 在构建过程中会生成与输出的压缩代码对应的源映射文件。这样，在浏览器中调试时，可以在开发者工具中看到原始的、易于理解的代码，而不是压缩后的代码。
+    }
   }
 }
 //基本设置
