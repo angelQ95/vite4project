@@ -9,6 +9,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { onMounted } from 'vue';
+
 onMounted(() => {
     new Map({
         target: 'map',
