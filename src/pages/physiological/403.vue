@@ -23,7 +23,6 @@
     width: 100%;
     border-radius: 4px;
     padding: 50px 0;
-    height: 100vh;
 
     .text-center {
       h1 {
