@@ -35,14 +35,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/cognitive/scene/ol.vue'),
       },
       {
-        path: 'scene',
-        name: 'scene',
-        meta: {
-          title: 'scene',
-        },
-        component: () => import('@/pages/cognitive/scene.vue'),
-      },
-      {
         path: 'cognitive-403',
         name: 'cognitive-403',
         meta: {
