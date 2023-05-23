@@ -1,8 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="dec"><span>任务转换指的是个体在不同任务中灵活切换的能力，能够协助个体适应不同环境需求的变化，这种能力是执行功能的一种，任务转换能力反映了个体在认知灵活性的水平。</span></div>
     <iframe class="if" src="/static/cuedSwitch.html" title="cuedSwitch"></iframe>
-    <div class="dec"><span>您的测试得分为：200分</span></div>
   </div>
 </template>
 
