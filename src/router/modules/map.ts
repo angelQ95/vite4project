@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { PieChartOutlined } from '@vicons/antd';
+import { MapSharp } from '@vicons/ionicons5';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -16,24 +16,24 @@ import { renderIcon } from '@/utils/index';
  * */
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/dataVisual',
-    name: 'dataVisual',
-    redirect: '/dataVisual/echarts',
+    path: '/map',
+    name: 'map',
+    redirect: '/scene/ol',
     component: Layout,
     meta: {
-      title: '数据可视化',
-      icon: renderIcon(PieChartOutlined),
+      title: 'gis',
+      icon: renderIcon(MapSharp),
       sort: 3,
     },
     children: [
       {
-        path: 'echarts',
-        name: 'echarts',
+        path: 'scene/ol',
+        name: 'ol',
         meta: {
-          title: 'echarts',
+          title: 'openlayers地图',
         },
-        component: () => import('@/pages/dataVisual/echarts.vue'),
-      }
+        component: () => import('@/pages/scene/ol.vue'),
+      },
     ],
   },
 ];

@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { ExclamationCircleOutlined } from '@vicons/antd';
+import { SwitcherOutlined } from '@vicons/antd';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -21,8 +21,8 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/psychological/cuedTaskSwitching',
     component: Layout,
     meta: {
-      title: 'psychological',
-      icon: renderIcon(ExclamationCircleOutlined),
+      title: '心理测试',
+      icon: renderIcon(SwitcherOutlined),
       sort: 3,
     },
     children: [
@@ -30,26 +30,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'cuedTaskSwitching',
         name: 'cuedTaskSwitching',
         meta: {
-          title: 'cuedTaskSwitching',
+          title: '线索切换范式',
         },
         component: () => import('@/pages/psychological/cuedTaskSwitching.vue'),
-      },
-      {
-        path: 'psychological-404',
-        name: 'psychological-404',
-        meta: {
-          title: '404',
-        },
-        component: () => import('@/pages/psychological/404.vue'),
-      },
-      {
-        path: 'psychological-500',
-        name: 'psychological-500',
-        meta: {
-          title: '500',
-        },
-        component: () => import('@/pages/psychological/500.vue'),
-      },
+      }
     ],
   },
 ];
