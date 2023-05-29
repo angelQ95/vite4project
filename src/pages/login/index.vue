@@ -132,17 +132,17 @@ const handleSubmit = (e) => {
                     message.success('登录成功，即将进入系统');
                     if (route.name === LOGIN_NAME) {
                         UserMenuStore.setMenu([{
-                            name: '1',
+                            name: '地图',
                             color: 'light-green',
-                            path: '/cognitive/cognitive-403'
+                            path: '/map'
                         }, {
-                            name: '2',
+                            name: '数据可视化',
                             color: 'green',
-                            path: '/psychological/psychological-403'
+                            path: '/dataVisual'
                         }, {
-                            name: '3',
+                            name: '心理测试',
                             color: 'light-green',
-                            path: '/physiological/physiological-403'
+                            path: '/psychological'
                         }])
                         router.replace('/');
                         //接口返回对应类型权限的菜单数据，设置菜单数据。
