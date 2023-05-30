@@ -1,6 +1,6 @@
 <template>
     <div class="tpl">
-        <h1 class="marg">xxxxxxxx系统</h1>
+        <h1 class="marg">数据可视化系统</h1>
         <n-grid x-gap="12" :cols="giList.length">
             <n-gi v-for="item in giList">
                 <router-link :to="item.path">
