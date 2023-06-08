@@ -40,9 +40,7 @@
                         </div>
                     </n-form-item>
                     <n-form-item>
-                        <n-button type="primary" @click="handleSubmit" size="large" :loading="loading" block>
-                            登录
-                        </n-button>
+                        <n-button type="primary" @click="handleSubmit" size="large" :loading="loading" block> 登录 </n-button>
                     </n-form-item>
                     <n-form-item class="default-color">
                         <div class="flex view-account-other">
@@ -131,19 +129,23 @@ const handleSubmit = (e) => {
                     const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
                     message.success('登录成功，即将进入系统');
                     if (route.name === LOGIN_NAME) {
-                        UserMenuStore.setMenu([{
-                            name: '地图',
-                            color: 'light-green',
-                            path: '/map'
-                        }, {
-                            name: '数据可视化',
-                            color: 'green',
-                            path: '/dataVisual'
-                        }, {
-                            name: '心理测试',
-                            color: 'light-green',
-                            path: '/psychological'
-                        }])
+                        UserMenuStore.setMenu([
+                            {
+                                name: '地图',
+                                color: 'light-green',
+                                path: '/map',
+                            },
+                            {
+                                name: '数据可视化',
+                                color: 'green',
+                                path: '/dataVisual',
+                            },
+                            {
+                                name: '心理测试',
+                                color: 'light-green',
+                                path: '/psychological',
+                            },
+                        ]);
                         router.replace('/');
                         //接口返回对应类型权限的菜单数据，设置菜单数据。
 
@@ -160,6 +162,38 @@ const handleSubmit = (e) => {
         }
     });
 };
+
+import { createScheduler } from '@maverick-js/scheduler';
+
+const scheduler = createScheduler();
+
+const taskA = () => { };
+const taskB = () => { };
+async function doTask() {
+    // flush 指的是将调度器中的任务队列立即执行的操作
+    // // Queue tasks. 事件队列
+    scheduler.enqueue(taskA);
+    scheduler.enqueue(taskB);
+
+    // // Be notified of a flush.收到flush通知
+    const stop = scheduler.onFlush(() => {
+        console.log('Flushed!');
+    });
+
+    stop(); // unsubscribe 退订
+
+    // // Schedule a flush - can be invoked more than once.
+    //安排冲洗 - 可以多次调用。
+    scheduler.flush();
+
+    // // Wait for flush to complete.//等待冲洗完成
+    await scheduler.tick;
+
+    // // Synchronously flush the queue whenever desired.
+    scheduler.flushSync();
+}
+
+doTask();
 </script>
 
 <style lang="less" scoped>
