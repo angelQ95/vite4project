@@ -216,7 +216,7 @@
       };
 
       const breadcrumbList = computed(() => {
-        console.log(route)
+        // console.log(route)
         return generator(route.matched);
       });
 
